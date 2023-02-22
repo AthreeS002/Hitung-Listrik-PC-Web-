@@ -1,5 +1,6 @@
 <?php
-  include("../koneksi.php");
+require "../koneksi.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -10,21 +11,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>PC Builder</title>
+  <title>MbuHotel</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-
-<!-- DataTables -->
-<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-
-<!-- overlayScrollbars -->
-<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="dist/css/adminlte.min.css">
-<!-- Google Font: Source Sans Pro -->
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -48,7 +44,7 @@
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <li class="nav-item">
-          <a class="nav-link" href="../index.php" onclick="return confirm('Apakah Anda Yakin Ingin Keluar?')">
+          <a class="nav-link" href="logout.php" onclick="return confirm('Apakah Anda Yakin Ingin Keluar?')">
             Logout &nbsp;
             <i class="fas fa-sign-out-alt"></i>
           </a>
@@ -60,10 +56,10 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-light-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="#" class="brand-link">
+      <a href="index3.html" class="brand-link">
         <i class="fas fa-hotel img-circle elevation-3 ml-3"></i>
         &nbsp;
-        <span class="brand-text font-weight-bold">PC Builder</span>
+        <span class="brand-text font-weight-bold">MbuHotel</span>
       </a>
 
       <!-- Sidebar -->
@@ -75,9 +71,17 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+              <li class="nav-item has-treeview menu-open">
+                <a href="index.php" class="nav-link active">
+                  <i class="nav-icon fas fa-home"></i>
+                  <p>
+                    Dashboard
+                  </p>
+                </a>
+              </li>
               <li class="nav-header">DATA MASTER</li>
               <li class="nav-item">
-                <a href="gpu.php" class="nav-link active">
+                <a href="gpu.php" class="nav-link">
                   <i class="nav-icon fas fa-person-booth"></i>
                   <p>
                     Graphic Card
@@ -110,7 +114,7 @@
               </li>
               <li class="nav-header">DATA ADMIN</li>
               <li class="nav-item">
-                <a href="admin.php" class="nav-link">
+                <a href="admin/index.php" class="nav-link">
                   <i class="nav-icon fas fa-user-shield"></i>
                   <p>
                     Administrator
@@ -132,10 +136,13 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Data GPU</h1>
+              <h1 class="m-0 text-dark">Dashboard</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
-
+              <ol class="breadcrumb float-sm-right">
+                <!-- <li class="breadcrumb-item"><a href="index.php">Home</a></li> -->
+                <li class="breadcrumb-item active">Dashboard</li>
+              </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -143,54 +150,100 @@
       <!-- /.content-header -->
 
       <!-- Main content -->
-
       <section class="content">
         <div class="container-fluid">
+          <!-- Info boxes -->
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-person-booth"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Kamar</span>
+                  <span class="info-box-number">
+                    <?= $kamar; ?>
+                    <small>ruang</small>
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-users"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Tamu</span>
+                  <span class="info-box-number">
+                    <?= $tamu; ?>
+                    <small>orang</small>
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <!-- fix for small devices only -->
+            <div class="clearfix hidden-md-up"></div>
+
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-bed"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Transaksi Aktif</span>
+                  <span class="info-box-number">
+                    <?= $transaksi1; ?>
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-book"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Total Transaksi</span>
+                  <span class="info-box-number">
+                    <?= $transaksi2; ?>
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
 
           <div class="row">
             <div class="col-12">
-              <div class="card">
+              <!-- BAR CHART -->
+              <div class="card card-info">
+                <div class="card-header">
+                  <h3 class="card-title">Grafik Transaksi Tahun 2020</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                  </div>
+                </div>
                 <div class="card-body">
-                  <a class="btn btn-success mb-2" href="tambah/add_gpu.php">Add Data</a>
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr class="text-center">
-                        <th>Nama Unit</th>
-                        <th>TDP</th>
-                        <th>Action</th>
-                        <!-- <th>Harga</th>
-                        <th>Status</th> -->
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-
-                      $gpu = mysqli_query($koneksi, "SELECT * FROM gpu");
-
-                      while ($row = mysqli_fetch_array($gpu)) {
-                        echo "
-                <tr>
-                  <td>" . $row['nama_gpu'] . "</td>
-                  <td>" . $row['tdp_gpu'] . "</td>
-                  <td class='text-center'>
-                            ";
-                                ?>
-                                  <a href="edit_gpu.php?id=<?= $row['id_gpu']; ?>" onclick="return confirm('Apakah Anda Yakin Ingin Mengubah Data?')"><i class=' btn btn-warning py-0 px-1 far fa-edit'></i></a>
-                                  &nbsp;
-                                  <a href="hapus_gpu.php?id=<?= $row['id_gpu']; ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data?')"><i class=' btn btn-danger py-0 px-1 far fa-trash-alt'></i></a>
-                                <?php
-                                  echo "
-                            </td>
-                </tr>
-          ";
-                      }
-                      ?>
-                    </tbody>
-                    
-                  </table>
+                  <div class="chart">
+                    <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  </div>
                 </div>
                 <!-- /.card-body -->
               </div>
+              <!-- /.card -->
             </div>
           </div>
 
@@ -209,23 +262,17 @@
 
     <!-- Main Footer -->
     <footer class="main-footer text-sm text-center">
-      <strong>Copyright &copy; 2022 Envy Hotel</strong>
+      <strong>Copyright &copy; 2021 Pasha Bhimasty</strong>
     </footer>
 
   </div>
+
 
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- DataTables -->
-  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-
   <!-- overlayScrollbars -->
   <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
@@ -243,16 +290,213 @@
   <!-- ChartJS -->
   <script src="plugins/chart.js/Chart.min.js"></script>
 
-  <!-- PAGE SCRIPTS -->
-  <!-- <script src="../dist/js/pages/dashboard2.js"></script> -->
-
-  <!-- page script -->
+  <!-- BAR CHART -->
   <script>
     $(function() {
-      $("#example1").DataTable({
-        "responsive": true,
-        "autoWidth": false,
-      });
+
+      var areaChartData = {
+        labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+        datasets: [{
+            label: 'Standard',
+            backgroundColor: '#00c0ef',
+            borderColor: 'rgba(60,141,188,0.8)',
+            pointRadius: false,
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: [
+              <?php
+              $q1 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Standard') AND checkin BETWEEN '2020-01-01' and '2020-01-31'");
+              echo mysqli_num_rows($q1);
+              ?>,
+              <?php
+              $q2 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Standard') AND checkin BETWEEN '2020-02-01' and '2020-02-29'");
+              echo mysqli_num_rows($q2);
+              ?>,
+              <?php
+              $q3 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Standard') AND checkin BETWEEN '2020-03-01' and '2020-03-31'");
+              echo mysqli_num_rows($q3);
+              ?>,
+              <?php
+              $q4 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Standard') AND checkin BETWEEN '2020-04-01' and '2020-04-31'");
+              echo mysqli_num_rows($q4);
+              ?>,
+              <?php
+              $q5 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Standard') AND checkin BETWEEN '2020-05-01' and '2020-05-31'");
+              echo mysqli_num_rows($q5);
+              ?>,
+              <?php
+              $q6 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Standard') AND checkin BETWEEN '2020-06-01' and '2020-06-31'");
+              echo mysqli_num_rows($q6);
+              ?>,
+              <?php
+              $q7 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Standard') AND checkin BETWEEN '2020-07-01' and '2020-07-31'");
+              echo mysqli_num_rows($q7);
+              ?>,
+              <?php
+              $q8 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Standard') AND checkin BETWEEN '2020-08-01' and '2020-08-31'");
+              echo mysqli_num_rows($q8);
+              ?>,
+              <?php
+              $q9 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Standard') AND checkin BETWEEN '2020-09-01' and '2020-09-31'");
+              echo mysqli_num_rows($q9);
+              ?>,
+              <?php
+              $q10 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Standard') AND checkin BETWEEN '2020-10-01' and '2020-10-31'");
+              echo mysqli_num_rows($q10);
+              ?>,
+              <?php
+              $q11 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Standard') AND checkin BETWEEN '2020-11-01' and '2020-11-31'");
+              echo mysqli_num_rows($q11);
+              ?>,
+              <?php
+              $q12 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Standard') AND checkin BETWEEN '2020-12-01' and '2020-12-31'");
+              echo mysqli_num_rows($q12);
+              ?>
+            ]
+          },
+          {
+            label: 'Superior',
+            backgroundColor: '#3c8dbc',
+            borderColor: 'rgba(210, 214, 222, 1)',
+            pointRadius: false,
+            pointColor: 'rgba(210, 214, 222, 1)',
+            pointStrokeColor: '#c1c7d1',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(220,220,220,1)',
+            data: [
+              <?php
+              $q1 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Superior') AND checkin BETWEEN '2020-01-01' and '2020-01-31'");
+              echo mysqli_num_rows($q1);
+              ?>,
+              <?php
+              $q2 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Superior') AND checkin BETWEEN '2020-02-01' and '2020-02-29'");
+              echo mysqli_num_rows($q2);
+              ?>,
+              <?php
+              $q3 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Superior') AND checkin BETWEEN '2020-03-01' and '2020-03-31'");
+              echo mysqli_num_rows($q3);
+              ?>,
+              <?php
+              $q4 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Superior') AND checkin BETWEEN '2020-04-01' and '2020-04-31'");
+              echo mysqli_num_rows($q4);
+              ?>,
+              <?php
+              $q5 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Superior') AND checkin BETWEEN '2020-05-01' and '2020-05-31'");
+              echo mysqli_num_rows($q5);
+              ?>,
+              <?php
+              $q6 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Superior') AND checkin BETWEEN '2020-06-01' and '2020-06-31'");
+              echo mysqli_num_rows($q6);
+              ?>,
+              <?php
+              $q7 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Superior') AND checkin BETWEEN '2020-07-01' and '2020-07-31'");
+              echo mysqli_num_rows($q7);
+              ?>,
+              <?php
+              $q8 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Superior') AND checkin BETWEEN '2020-08-01' and '2020-08-31'");
+              echo mysqli_num_rows($q8);
+              ?>,
+              <?php
+              $q9 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Superior') AND checkin BETWEEN '2020-09-01' and '2020-09-31'");
+              echo mysqli_num_rows($q9);
+              ?>,
+              <?php
+              $q10 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Superior') AND checkin BETWEEN '2020-10-01' and '2020-10-31'");
+              echo mysqli_num_rows($q10);
+              ?>,
+              <?php
+              $q11 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Superior') AND checkin BETWEEN '2020-11-01' and '2020-11-31'");
+              echo mysqli_num_rows($q11);
+              ?>,
+              <?php
+              $q12 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Superior') AND checkin BETWEEN '2020-12-01' and '2020-12-31'");
+              echo mysqli_num_rows($q12);
+              ?>
+            ]
+          },
+          {
+            label: 'Deluxe',
+            backgroundColor: '#d2d6de',
+            borderColor: 'rgba(210, 214, 222, 1)',
+            pointRadius: false,
+            pointColor: 'rgba(210, 214, 222, 1)',
+            pointStrokeColor: '#c1c7d1',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(220,220,220,1)',
+            data: [
+              <?php
+              $q1 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Deluxe') AND checkin BETWEEN '2020-01-01' and '2020-01-31'");
+              echo mysqli_num_rows($q1);
+              ?>,
+              <?php
+              $q2 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Deluxe') AND checkin BETWEEN '2020-02-01' and '2020-02-29'");
+              echo mysqli_num_rows($q2);
+              ?>,
+              <?php
+              $q3 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Deluxe') AND checkin BETWEEN '2020-03-01' and '2020-03-31'");
+              echo mysqli_num_rows($q3);
+              ?>,
+              <?php
+              $q4 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Deluxe') AND checkin BETWEEN '2020-04-01' and '2020-04-31'");
+              echo mysqli_num_rows($q4);
+              ?>,
+              <?php
+              $q5 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Deluxe') AND checkin BETWEEN '2020-05-01' and '2020-05-31'");
+              echo mysqli_num_rows($q5);
+              ?>,
+              <?php
+              $q6 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Deluxe') AND checkin BETWEEN '2020-06-01' and '2020-06-31'");
+              echo mysqli_num_rows($q6);
+              ?>,
+              <?php
+              $q7 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Deluxe') AND checkin BETWEEN '2020-07-01' and '2020-07-31'");
+              echo mysqli_num_rows($q7);
+              ?>,
+              <?php
+              $q8 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Deluxe') AND checkin BETWEEN '2020-08-01' and '2020-08-31'");
+              echo mysqli_num_rows($q8);
+              ?>,
+              <?php
+              $q9 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Deluxe') AND checkin BETWEEN '2020-09-01' and '2020-09-31'");
+              echo mysqli_num_rows($q9);
+              ?>,
+              <?php
+              $q10 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Deluxe') AND checkin BETWEEN '2020-10-01' and '2020-10-31'");
+              echo mysqli_num_rows($q10);
+              ?>,
+              <?php
+              $q11 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Deluxe') AND checkin BETWEEN '2020-11-01' and '2020-11-31'");
+              echo mysqli_num_rows($q11);
+              ?>,
+              <?php
+              $q12 = mysqli_query($conn, "SELECT id_transaksi FROM transaksi WHERE no_kamar IN (select no_kamar from kamar where tipe='Deluxe') AND checkin BETWEEN '2020-12-01' and '2020-12-31'");
+              echo mysqli_num_rows($q12);
+              ?>
+            ]
+          },
+        ]
+      }
+
+      var barChartCanvas = $('#barChart').get(0).getContext('2d')
+      var barChartData = jQuery.extend(true, {}, areaChartData)
+      var temp0 = areaChartData.datasets[0]
+      var temp1 = areaChartData.datasets[1]
+      barChartData.datasets[0] = temp0
+      barChartData.datasets[1] = temp1
+
+      var barChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        datasetFill: false
+      }
+
+      var barChart = new Chart(barChartCanvas, {
+        type: 'bar',
+        data: barChartData,
+        options: barChartOptions
+      })
     });
   </script>
 

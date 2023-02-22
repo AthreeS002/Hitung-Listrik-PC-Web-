@@ -1,6 +1,22 @@
 <?php
 include("../../koneksi.php");
-?>
+
+$id = $_GET['id'];
+
+if (isset($_POST['update'])) {
+    $nama = $_POST['nama_procie'];
+    $tdp = $_POST['tdp_procie'];
+    
+    $result = mysqli_query($koneksi, "UPDATE procie SET nama_procie='$nama', tdp_procie='$tdp' WHERE id_procie = $id");
+
+    if ($result){
+        echo "<script>alert('berhasil')</script>";
+        header("location: ../procie.php");
+    }
+}
+
+    ?>
+    
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +26,7 @@ include("../../koneksi.php");
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>PC Builder</title>
+  <title>Envy Hotel</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -60,10 +76,10 @@ include("../../koneksi.php");
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-light-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="#" class="brand-link">
+      <a href="index3.html" class="brand-link">
         <i class="fas fa-hotel img-circle elevation-3 ml-3"></i>
         &nbsp;
-        <span class="brand-text font-weight-bold">PC Builder</span>
+        <span class="brand-text font-weight-bold">Envy Hotel</span>
       </a>
 
       <!-- Sidebar -->
@@ -75,42 +91,43 @@ include("../../koneksi.php");
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+              <li class="nav-item">
+                <a href="admin.php" class="nav-link">
+                  <i class="nav-icon fas fa-home"></i>
+                  <p>
+                    Dashboard
+                  </p>
+                </a>
+              </li>
               <li class="nav-header">DATA MASTER</li>
               <li class="nav-item">
-                <a href="gpu.php" class="nav-link active">
+                <a href="../kamar/index.php" class="nav-link">
                   <i class="nav-icon fas fa-person-booth"></i>
                   <p>
-                    Graphic Card
+                    Data Kamar
                   </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="procie.php" class="nav-link">
+                <a href="../tamu/index.php" class="nav-link active">
                   <i class="nav-icon fas fa-users"></i>
                   <p>
-                    Prosesor
+                    Data Tamu
                   </p>
                 </a>
               </li>
+              <li class="nav-header">DATA TRANSAKSI</li>
               <li class="nav-item">
-                <a href="motherboard.php" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
+                <a href="../transaksi/index.php" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
                   <p>
-                    Motherboard
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="ram.php" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>
-                    RAM
+                    Data Transaksi
                   </p>
                 </a>
               </li>
               <li class="nav-header">DATA ADMIN</li>
               <li class="nav-item">
-                <a href="admin.php" class="nav-link">
+                <a href="../admin/index.php" class="nav-link">
                   <i class="nav-icon fas fa-user-shield"></i>
                   <p>
                     Administrator
@@ -139,66 +156,37 @@ include("../../koneksi.php");
               <!-- general form elements -->
               <div class="card card-info">
                 <div class="card-header">
-                  <h5 class="text-center m-0">Add Data GPU</h5>
+                  <h5 class="text-center m-0">Update Data GPU</h5>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
                 <?php
-                    // $id = $_GET['id'];
-                    // $result = mysqli_query($koneksi, "SELECT * FROM registrasi WHERE nin='$nin'");
-                    // while ($item = mysqli_fetch_array($result)){
-                    //   $username = $item['username'];
-                    //   $email = $item['email'];
-                    //   $nama = $item['nama'];
-                    //   $password = $item['password'];
-                    //   // $password2 = $item['password2'];
-                    //   $tanggallahir = $item['tanggallahir'];
-                    //   $gender = $item['gender'];
-                    //   $alamat = $item['alamat'];
-                    //   $telepon = $item['telepon'];
-                      // $foto = $item['foto'];
-                    
+                    $id = $_GET['id'];
+                    $result = mysqli_query($koneksi, "SELECT * FROM procie WHERE id_procie='$id'");
+                    while ($item = mysqli_fetch_array($result)){
+                      $nama = $item['nama_procie'];
+                      $tdp = $item['tdp_procie'];                    
                   ?>
-                <form action="" method="post" enctype="multipart/form-data">
+                <form role="form" method="post" action="">
                   <div class="card-body">
-                  <!-- <h5 class="card-title">You can add data GPU</h5> -->
-                    <hr>
                     <div class="form-group">
-                      <label for="">Name</label>
-                      <input type="text" name="nama_gpu" class="form-control" required>
+                      <label for="">Name of Unit</label>
+                      <input type="text" name="nama_procie" class="form-control" value="<?= $nama; ?>" required>
                     </div>
                     <div class="form-group">
-                      <label for="">TDP</label>
-                      <input type="number" name="tdp_gpu" class="form-control" required>
+                      <label for="">TDP of Processor</label>
+                      <input type="number" name="tdp_procie" class="form-control" value="<?= $tdp; ?>" required>
                     </div>
 
                     <!-- /.card-body -->
 
-                    <div class="my-5 text-center">
+                    <div class="card-footer text-center">
                       <a href="../gpu.php" name="batal" class="btn btn-danger">Cancel</a>
                       &nbsp;
-                      <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" name="update" class="btn btn-primary" onclick="return confirm('Apakah Anda Yakin Ingin Menyimpan Perubahan Data?')">Update</button>
                     </div>
-                    <?php
-                      if (isset($_POST['submit'])){
-                        $nama = $_POST['nama_gpu'];
-                        $tdp = $_POST['tdp_gpu'];
-                        include_once("../../koneksi.php");
-                
-                        $result = mysqli_query($koneksi, "INSERT INTO gpu(id_gpu, nama_gpu, tdp_gpu) VALUES (NULL, '$nama', '$tdp')");
-                
-                        if($result){
-                    ?>
-                      <hr>
-                    <div class="card-footer text-center">
-                      <p>Data Added</p>
-                      <a href="../index.php" name="view_result" class="btn btn-success">View Result</a>
-                    </div>
-                    <?php
-                      }
-                    }
-                    ?>
                 </form>
+                <?php } ?>
               </div>
               <!-- /.card -->
             </div>
@@ -220,7 +208,7 @@ include("../../koneksi.php");
 
     <!-- Main Footer -->
     <footer class="main-footer text-sm text-center">
-      <strong>Copyright &copy; 2023 Noxious</strong>
+      <strong>Copyright &copy; 2022 Envy Hotel</strong>
     </footer>
 
   </div>
@@ -231,6 +219,12 @@ include("../../koneksi.php");
   <!-- Bootstrap -->
   <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+  <!-- DataTables -->
+  <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
   <!-- overlayScrollbars -->
   <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
@@ -239,7 +233,7 @@ include("../../koneksi.php");
   <!-- OPTIONAL SCRIPTS -->
   <script src="../dist/js/demo.js"></script>
 
-  <!-- PAGE ../PLUGINS -->
+  <!-- PAGE PLUGINS -->
   <!-- jQuery Mapael -->
   <script src="../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
   <script src="../plugins/raphael/raphael.min.js"></script>
@@ -250,7 +244,17 @@ include("../../koneksi.php");
 
   <!-- PAGE SCRIPTS -->
   <!-- <script src="../../dist/js/pages/dashboard2.js"></script> -->
+
+  <!-- page script -->
+  <script>
+    $(function() {
+      $("#example1").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+      });
+    });
   </script>
+
 </body>
 
 </html>

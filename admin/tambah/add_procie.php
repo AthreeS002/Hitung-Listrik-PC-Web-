@@ -77,7 +77,7 @@ include("../../koneksi.php");
                with font-awesome or any other icon font library -->
               <li class="nav-header">DATA MASTER</li>
               <li class="nav-item">
-                <a href="gpu.php" class="nav-link active">
+                <a href="gpu.php" class="nav-link">
                   <i class="nav-icon fas fa-person-booth"></i>
                   <p>
                     Graphic Card
@@ -85,7 +85,7 @@ include("../../koneksi.php");
                 </a>
               </li>
               <li class="nav-item">
-                <a href="procie.php" class="nav-link">
+                <a href="procie.php" class="nav-link active">
                   <i class="nav-icon fas fa-users"></i>
                   <p>
                     Prosesor
@@ -139,37 +139,22 @@ include("../../koneksi.php");
               <!-- general form elements -->
               <div class="card card-info">
                 <div class="card-header">
-                  <h5 class="text-center m-0">Add Data GPU</h5>
+                  <h5 class="text-center m-0">Add Data Processor</h5>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <?php
-                    // $id = $_GET['id'];
-                    // $result = mysqli_query($koneksi, "SELECT * FROM registrasi WHERE nin='$nin'");
-                    // while ($item = mysqli_fetch_array($result)){
-                    //   $username = $item['username'];
-                    //   $email = $item['email'];
-                    //   $nama = $item['nama'];
-                    //   $password = $item['password'];
-                    //   // $password2 = $item['password2'];
-                    //   $tanggallahir = $item['tanggallahir'];
-                    //   $gender = $item['gender'];
-                    //   $alamat = $item['alamat'];
-                    //   $telepon = $item['telepon'];
-                      // $foto = $item['foto'];
-                    
-                  ?>
+
                 <form action="" method="post" enctype="multipart/form-data">
                   <div class="card-body">
                   <!-- <h5 class="card-title">You can add data GPU</h5> -->
                     <hr>
                     <div class="form-group">
                       <label for="">Name</label>
-                      <input type="text" name="nama_gpu" class="form-control" required>
+                      <input type="text" name="nama_procie" class="form-control" required>
                     </div>
                     <div class="form-group">
                       <label for="">TDP</label>
-                      <input type="number" name="tdp_gpu" class="form-control" required>
+                      <input type="number" name="tdp_procie" class="form-control" required>
                     </div>
 
                     <!-- /.card-body -->
@@ -181,11 +166,11 @@ include("../../koneksi.php");
                     </div>
                     <?php
                       if (isset($_POST['submit'])){
-                        $nama = $_POST['nama_gpu'];
-                        $tdp = $_POST['tdp_gpu'];
+                        $nama = $_POST['nama_procie'];
+                        $tdp = $_POST['tdp_procie'];
                         include_once("../../koneksi.php");
                 
-                        $result = mysqli_query($koneksi, "INSERT INTO gpu(id_gpu, nama_gpu, tdp_gpu) VALUES (NULL, '$nama', '$tdp')");
+                        $result = mysqli_query($koneksi, "INSERT INTO procie (id_procie, nama_procie, tdp_procie) VALUES (NULL, '$nama', '$tdp')");
                 
                         if($result){
                     ?>
