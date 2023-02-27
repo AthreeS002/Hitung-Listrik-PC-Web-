@@ -1,6 +1,22 @@
 <?php
-  include("../koneksi.php");
-?>
+include("../../koneksi.php");
+
+$id = $_GET['id'];
+
+if (isset($_POST['update'])) {
+    $nama = $_POST['nama_monitor'];
+    $tdp = $_POST['tdp_monitor'];
+    
+    $result = mysqli_query($koneksi, "UPDATE monitor SET nama_monitor='$nama', tdp_monitor='$tdp' WHERE id_monitor = $id");
+
+    if ($result){
+        echo "<script>alert('berhasil')</script>";
+        header("location: ../monitor.php");
+    }
+}
+
+    ?>
+    
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,19 +26,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>PC Builder</title>
+  <title>Envy Hotel</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
 
 <!-- DataTables -->
-<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 
 <!-- overlayScrollbars -->
-<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+<link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 <!-- Theme style -->
-<link rel="stylesheet" href="dist/css/adminlte.min.css">
+<link rel="stylesheet" href="../dist/css/adminlte.min.css">
 <!-- Google Font: Source Sans Pro -->
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -48,8 +64,8 @@
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <li class="nav-item">
-          <a class="nav-link" href="../index.php" onclick="return confirm('Apakah Anda Yakin Ingin Keluar?')">
-            Logout &nbsp;
+          <a class="nav-link" href="logout.php" onclick="return confirm('Apakah Anda Yakin Ingin Keluar?')">
+            Logout
             <i class="fas fa-sign-out-alt"></i>
           </a>
         </li>
@@ -75,17 +91,9 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-              <li class="nav-item has-treeview">
-                <a href="index.php" class="nav-link">
-                  <i class="nav-icon fas fa-home"></i>
-                  <p>
-                    Dashboard
-                  </p>
-                </a>
-              </li>
               <li class="nav-header">DATA MASTER</li>
               <li class="nav-item">
-                <a href="gpu.php" class="nav-link active">
+                <a href="gpu.php" class="nav-link">
                   <i class="nav-icon fas fa-person-booth"></i>
                   <p>
                     Graphic Card
@@ -93,7 +101,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="procie.php" class="nav-link">
+                <a href="monitor.php" class="nav-link">
                   <i class="nav-icon fas fa-users"></i>
                   <p>
                     Prosesor
@@ -117,7 +125,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="monitor.php" class="nav-link">
+                <a href="monitor.php" class="nav-link active">
                   <i class="nav-icon fas fa-users"></i>
                   <p>
                     Monitor
@@ -126,7 +134,7 @@
               </li>
               <li class="nav-header">DATA ADMIN</li>
               <li class="nav-item">
-                <a href="admin/index.php" class="nav-link">
+                <a href="admin.php" class="nav-link">
                   <i class="nav-icon fas fa-user-shield"></i>
                   <p>
                     Administrator
@@ -143,71 +151,53 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Data GPU</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
 
       <!-- Main content -->
 
       <section class="content">
         <div class="container-fluid">
 
-          <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-body">
-                  <a class="btn btn-success mb-3" href="tambah/add_gpu.php">Add Data</a>
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr class="text-center">
-                        <th>Nama Unit</th>
-                        <th>TDP</th>
-                        <th>Action</th>
-                        <!-- <th>Harga</th>
-                        <th>Status</th> -->
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-
-                      $gpu = mysqli_query($koneksi, "SELECT * FROM gpu ORDER BY id_gpu DESC");
-
-                      while ($row = mysqli_fetch_array($gpu)) {
-                        echo "
-                <tr>
-                  <td>" . $row['nama_gpu'] . "</td>
-                  <td>" . $row['tdp_gpu'] . " W</td>
-                  <td class='text-center'>
-                            ";
-                                ?>
-                                  <a href="edit/edit_gpu.php?id=<?= $row['id_gpu']; ?>" onclick="return confirm('Apakah Anda Yakin Ingin Mengubah Data?')"><i class=' btn btn-warning py-0 px-1 far fa-edit'></i></a>
-                                  <!-- &nbsp; -->
-                                  <a href="hapus/hapus_gpu.php?id=<?= $row['id_gpu']; ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data?')"><i class=' btn btn-danger py-0 px-1 far fa-trash-alt'></i></a>
-                                <?php
-                                  echo "
-                            </td>
-                </tr>
-          ";
-                      }
-                      ?>
-                    </tbody>
-                    
-                  </table>
+          <div class="row justify-content-center pt-2">
+            <!-- left column -->
+            <div class="col-md-8">
+              <!-- general form elements -->
+              <div class="card card-info">
+                <div class="card-header">
+                  <h5 class="text-center m-0">Update Data GPU</h5>
                 </div>
-                <!-- /.card-body -->
+                <!-- /.card-header -->
+                <!-- form start -->
+                <?php
+                    $id = $_GET['id'];
+                    $result = mysqli_query($koneksi, "SELECT * FROM monitor WHERE id_monitor='$id'");
+                    while ($item = mysqli_fetch_array($result)){
+                      $nama = $item['nama_monitor'];
+                      $tdp = $item['tdp_monitor'];                    
+                  ?>
+                <form role="form" method="post" action="">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="">Name of Unit</label>
+                      <input type="text" name="nama_monitor" class="form-control" value="<?= $nama; ?>" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="">TDP of Monitor</label>
+                      <input type="number" name="tdp_monitor" class="form-control" value="<?= $tdp; ?>" required>
+                    </div>
+
+                    <!-- /.card-body -->
+
+                    <div class="card-footer text-center">
+                      <a href="../monitor.php" name="batal" class="btn btn-danger">Cancel</a>
+                      &nbsp;
+                      <button type="submit" name="update" class="btn btn-primary" onclick="return confirm('Apakah Anda Yakin Ingin Menyimpan Perubahan Data?')">Update</button>
+                    </div>
+                </form>
+                <?php } ?>
               </div>
+              <!-- /.card -->
             </div>
+            <!--/.col (left) -->
           </div>
 
         </div>
@@ -232,35 +222,35 @@
 
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="../plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- DataTables -->
-  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 
   <!-- overlayScrollbars -->
-  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.js"></script>
+  <script src="../dist/js/adminlte.js"></script>
 
   <!-- OPTIONAL SCRIPTS -->
-  <script src="dist/js/demo.js"></script>
+  <script src="../dist/js/demo.js"></script>
 
   <!-- PAGE PLUGINS -->
   <!-- jQuery Mapael -->
-  <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-  <script src="plugins/raphael/raphael.min.js"></script>
-  <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-  <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+  <script src="../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+  <script src="../plugins/raphael/raphael.min.js"></script>
+  <script src="../plugins/jquery-mapael/jquery.mapael.min.js"></script>
+  <script src="../plugins/jquery-mapael/maps/usa_states.min.js"></script>
   <!-- ChartJS -->
-  <script src="plugins/chart.js/Chart.min.js"></script>
+  <script src="../plugins/chart.js/Chart.min.js"></script>
 
   <!-- PAGE SCRIPTS -->
-  <!-- <script src="../dist/js/pages/dashboard2.js"></script> -->
+  <!-- <script src="../../dist/js/pages/dashboard2.js"></script> -->
 
   <!-- page script -->
   <script>
@@ -268,8 +258,6 @@
       $("#example1").DataTable({
         "responsive": true,
         "autoWidth": false,
-        searching: true,
-        info: false,
       });
     });
   </script>
