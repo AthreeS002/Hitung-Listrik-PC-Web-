@@ -1,7 +1,14 @@
 <?php
 $procie = $_POST['procie'];
 $gpu = $_POST['gpu'];
+$mobo = $_POST['mobo'];
+$cooler = $_POST['cooler'];
 $monitor = $_POST['monitor'];
+$ram = $_POST['ram'];
+$total = $procie + $gpu + $mobo + $cooler + $monitor + $ram;
+
+//$total = ($procie + $gpu + $mobo + $cooler + $monitor + $ram);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -173,36 +180,42 @@ $monitor = $_POST['monitor'];
 											<div class="col-md-6"> 
 												<div class="form-group">
 													<label class="label" for="gpu">Graphic Card</label>
-													<input type="text" class="form-control" name="gpu" id="gpu" placeholder="Type in watt" required>
+													<input type="text" class="form-control" name="gpu" id="gpu" value="<?= $gpu ?> W" readonly>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="label" for="mobo">Motherboard</label>
-													<input type="text" class="form-control" name="mobo" id="mobo" placeholder="Type in watt" required>
+													<input type="text" class="form-control" name="mobo" id="mobo" value="<?= $mobo ?> W" readonly>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="label" for="cooler">Cooler</label>
-													<input type="text" class="form-control" name="cooler" id="cooler" placeholder="Type in watt" required>
+													<input type="text" class="form-control" name="cooler" id="cooler" value="<?= $cooler ?> W" readonly>
 												</div>
 											</div>
-                                            <div class="col-md-12">
+                      <div class="col-md-12">
 												<div class="form-group">
 													<label class="label" for="monitor">Monitor</label>
-													<input type="text" class="form-control" name="monitor" id="monitor" placeholder="Type in watt" required>
+													<input type="text" class="form-control" name="monitor" id="monitor" value="<?= $monitor ?> W" readonly>
 												</div>
 											</div>
-                                            <div class="col-md-12">
+                      <div class="col-md-12">
 												<div class="form-group">
 													<label class="label" for="ram">RAM</label>
-													<input type="text" class="form-control" name="ram" id="ram" placeholder="Type in watt" required>
+													<input type="text" class="form-control" name="ram" id="ram" value="<?= $ram ?> W" readonly>
 												</div>
 											</div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label type="text" for="total">Total (Watt)</label>
+                          <input type="text" class="form-control" name="total" value="<?= $total ?> W" readonly>
+                        </div>
+                      </div>
 											<div class="col-md-12">
 												<div class="form-group">
-													<input type="submit" value="Calculate" class="btn btn-success">
+													<a href="manual.php" class="btn btn-danger"> Back </a>
 													<div class="submitting"></div>
 												</div>
 											</div>
