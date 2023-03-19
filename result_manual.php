@@ -1,5 +1,7 @@
 <?php
-include("koneksi.php");
+$procie = $_POST['procie'];
+$gpu = $_POST['gpu'];
+$monitor = $_POST['monitor'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -160,12 +162,12 @@ include("koneksi.php");
 							<div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
 								<div class="contact-wrap w-100 p-md-5">
                                     <!-- form post -->
-									<form method="POST" action="result_manual.php" id="contactForm" name="contactForm" class="contactForm">
+									<form id="contactForm" name="contactForm" class="contactForm">
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="label" for="procie">Processor</label>
-													<input type="text" class="form-control" name="procie" id="procie" placeholder="Type in watt" required>
+													<input type="text" class="form-control" name="procie" id="procie" value="<?= $procie ?> W" readonly>
 												</div>
 											</div>
 											<div class="col-md-6"> 
