@@ -173,6 +173,8 @@
                       <tr class="text-center">
                         <th>Nama Unit</th>
                         <th>TDP</th>
+                        <th>Memory</th>
+                        <th>Base Clock</th>
                         <th>Action</th>
                         <!-- <th>Harga</th>
                         <th>Status</th> -->
@@ -188,6 +190,9 @@
                 <tr>
                   <td>" . $row['nama_gpu'] . "</td>
                   <td>" . $row['tdp_gpu'] . " W</td>
+                  <td>" . $row['memory_gpu'] . "</td>
+                  <td>" . $row['baseclock_gpu'] . "</td>
+                  <td>" . $row['boostclock_gpu'] . "</td>
                   <td class='text-center'>
                             ";
                                 ?>

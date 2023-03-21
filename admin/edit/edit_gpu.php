@@ -165,7 +165,10 @@ if (isset($_POST['update'])) {
                     $result = mysqli_query($koneksi, "SELECT * FROM gpu WHERE id_gpu='$id'");
                     while ($item = mysqli_fetch_array($result)){
                       $nama = $item['nama_gpu'];
-                      $tdp = $item['tdp_gpu'];                    
+                      $tdp = $item['tdp_gpu'];
+                      $memory = $item['memory_gpu'];
+                      $baseclock = $item['baseclock_gpu'];
+                      $boostclock = $item['boostclock_gpu'];
                   ?>
                 <form role="form" method="post" action="">
                   <div class="card-body">
@@ -176,6 +179,10 @@ if (isset($_POST['update'])) {
                     <div class="form-group">
                       <label for="">TDP of GPU</label>
                       <input type="number" name="tdp_gpu" class="form-control" value="<?= $tdp; ?>" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Memory Size of GPU</label>
+                      <input type="number" name="memory" class="form-control" value="<?= $tdp; ?>" required>
                     </div>
 
                     <!-- /.card-body -->
