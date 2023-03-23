@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2023 at 08:43 AM
+-- Generation Time: Mar 23, 2023 at 08:59 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -42,20 +42,26 @@ CREATE TABLE `cooler` (
 CREATE TABLE `gpu` (
   `id_gpu` int(30) NOT NULL,
   `nama_gpu` varchar(255) NOT NULL,
-  `tdp_gpu` int(255) NOT NULL
+  `tdp_gpu` int(255) NOT NULL,
+  `memory_gpu` int(10) NOT NULL,
+  `baseclock_gpu` int(10) NOT NULL,
+  `boostclock_gpu` int(10) NOT NULL,
+  `memoryclock_gpu` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `gpu`
 --
 
-INSERT INTO `gpu` (`id_gpu`, `nama_gpu`, `tdp_gpu`) VALUES
-(1, 'GTX 1650 Super', 100),
-(3, 'GTX 1660 Super', 150),
-(11, 'GTX 1050 Ti', 75),
-(12, 'GTX 1650', 75),
-(13, 'GTX 1660', 120),
-(14, 'GTX 750 Ti', 60);
+INSERT INTO `gpu` (`id_gpu`, `nama_gpu`, `tdp_gpu`, `memory_gpu`, `baseclock_gpu`, `boostclock_gpu`, `memoryclock_gpu`) VALUES
+(1, 'GTX 1650 Super', 100, 0, 0, 0, 0),
+(3, 'GTX 1660 Super', 150, 0, 0, 0, 0),
+(11, 'GTX 1050 Ti', 75, 0, 0, 0, 0),
+(12, 'GTX 1650', 75, 0, 0, 0, 0),
+(13, 'GTX 1660', 120, 0, 0, 0, 0),
+(14, 'GTX 750 Ti', 60, 0, 0, 0, 0),
+(15, 'GTX 1070', 150, 0, 0, 0, 0),
+(16, 'GTX 1070 Ti', 180, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -176,7 +182,7 @@ ALTER TABLE `cooler`
 -- AUTO_INCREMENT for table `gpu`
 --
 ALTER TABLE `gpu`
-  MODIFY `id_gpu` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_gpu` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `mobo`
