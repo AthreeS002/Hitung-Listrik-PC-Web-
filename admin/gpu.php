@@ -175,6 +175,7 @@
                         <th>TDP</th>
                         <th>Memory</th>
                         <th>Base Clock</th>
+                        <th>Boost Clock</th>
                         <th>Action</th>
                         <!-- <th>Harga</th>
                         <th>Status</th> -->
@@ -190,9 +191,9 @@
                 <tr>
                   <td>" . $row['nama_gpu'] . "</td>
                   <td>" . $row['tdp_gpu'] . " W</td>
-                  <td>" . $row['memory_gpu'] . "</td>
-                  <td>" . $row['baseclock_gpu'] . "</td>
-                  <td>" . $row['boostclock_gpu'] . "</td>
+                  <td>" . $row['memory_gpu'] . " MB</td>
+                  <td>" . $row['baseclock_gpu'] . " MHz</td>
+                  <td>" . $row['boostclock_gpu'] . " MHz</td>
                   <td class='text-center'>
                             ";
                                 ?>

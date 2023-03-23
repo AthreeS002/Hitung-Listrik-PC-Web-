@@ -6,12 +6,17 @@ $id = $_GET['id'];
 if (isset($_POST['update'])) {
     $nama = $_POST['nama_gpu'];
     $tdp = $_POST['tdp_gpu'];
+    $memory = $_POST['memory'];
+    $baseclock = $_POST['baseclock'];
+    $boostclock = $_POST['boostclock'];
     
-    $result = mysqli_query($koneksi, "UPDATE gpu SET nama_gpu='$nama', tdp_gpu='$tdp' WHERE id_gpu = $id");
+    $result = mysqli_query($koneksi, "UPDATE gpu SET nama_gpu='$nama', tdp_gpu='$tdp', memory_gpu='$memory', baseclock_gpu='$baseclock', boostclock_gpu='$boostclock' WHERE id_gpu = $id");
 
     if ($result){
         echo "<script>alert('berhasil')</script>";
         header("location: ../gpu.php");
+    } else {
+      echo "error";
     }
 }
 
@@ -76,10 +81,10 @@ if (isset($_POST['update'])) {
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-light-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="#" class="brand-link">
         <i class="fas fa-hotel img-circle elevation-3 ml-3"></i>
         &nbsp;
-        <span class="brand-text font-weight-bold">Envy Hotel</span>
+        <span class="brand-text font-weight-bold">PC Builder</span>
       </a>
 
       <!-- Sidebar -->
@@ -91,8 +96,8 @@ if (isset($_POST['update'])) {
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-              <li class="nav-item">
-                <a href="admin.php" class="nav-link">
+              <li class="nav-item has-treeview">
+                <a href="index.php" class="nav-link">
                   <i class="nav-icon fas fa-home"></i>
                   <p>
                     Dashboard
@@ -101,33 +106,48 @@ if (isset($_POST['update'])) {
               </li>
               <li class="nav-header">DATA MASTER</li>
               <li class="nav-item">
-                <a href="../kamar/index.php" class="nav-link">
+                <a href="../gpu.php" class="nav-link active">
                   <i class="nav-icon fas fa-person-booth"></i>
                   <p>
-                    Data Kamar
+                    Graphic Card
                   </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../tamu/index.php" class="nav-link active">
+                <a href="procie.php" class="nav-link">
                   <i class="nav-icon fas fa-users"></i>
                   <p>
-                    Data Tamu
+                    Prosesor
                   </p>
                 </a>
               </li>
-              <li class="nav-header">DATA TRANSAKSI</li>
               <li class="nav-item">
-                <a href="../transaksi/index.php" class="nav-link">
-                  <i class="nav-icon fas fa-book"></i>
+                <a href="motherboard.php" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
                   <p>
-                    Data Transaksi
+                    Motherboard
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="ram.php" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                    RAM
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="monitor.php" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                    Monitor
                   </p>
                 </a>
               </li>
               <li class="nav-header">DATA ADMIN</li>
               <li class="nav-item">
-                <a href="../admin/index.php" class="nav-link">
+                <a href="admin/index.php" class="nav-link">
                   <i class="nav-icon fas fa-user-shield"></i>
                   <p>
                     Administrator
@@ -182,7 +202,15 @@ if (isset($_POST['update'])) {
                     </div>
                     <div class="form-group">
                       <label for="">Memory Size of GPU</label>
-                      <input type="number" name="memory" class="form-control" value="<?= $tdp; ?>" required>
+                      <input type="number" name="memory" class="form-control" value="<?= $memory; ?>" required>
+                    </div>
+                    <div class="form-group">
+                      <label>Base Clock</label>
+                      <input type="number" name="baseclock" class="form-control" value="<?= $baseclock; ?>" required>
+                    </div>
+                    <div class="form-group">                      
+                      <label>Boost Clock</label>
+                      <input type="number" name="boostclock" class="form-control" value="<?= $boostclock; ?>" required>
                     </div>
 
                     <!-- /.card-body -->
