@@ -5,12 +5,13 @@ $id = $_GET['id'];
 
 if (isset($_POST['update'])) {
     $nama = $_POST['nama_gpu'];
+    $merk = $_POST['merk_gpu'];
     $tdp = $_POST['tdp_gpu'];
     $memory = $_POST['memory'];
     $baseclock = $_POST['baseclock'];
     $boostclock = $_POST['boostclock'];
     
-    $result = mysqli_query($koneksi, "UPDATE gpu SET nama_gpu='$nama', tdp_gpu='$tdp', memory_gpu='$memory', baseclock_gpu='$baseclock', boostclock_gpu='$boostclock' WHERE id_gpu = $id");
+    $result = mysqli_query($koneksi, "UPDATE gpu SET merk_gpu='$merk', nama_gpu='$nama', tdp_gpu='$tdp', memory_gpu='$memory', baseclock_gpu='$baseclock', boostclock_gpu='$boostclock' WHERE id_gpu = $id");
 
     if ($result){
         echo "<script>alert('berhasil')</script>";
@@ -185,6 +186,7 @@ if (isset($_POST['update'])) {
                     $result = mysqli_query($koneksi, "SELECT * FROM gpu WHERE id_gpu='$id'");
                     while ($item = mysqli_fetch_array($result)){
                       $nama = $item['nama_gpu'];
+                      $merk = $item['merk_gpu'];
                       $tdp = $item['tdp_gpu'];
                       $memory = $item['memory_gpu'];
                       $baseclock = $item['baseclock_gpu'];
@@ -195,6 +197,10 @@ if (isset($_POST['update'])) {
                     <div class="form-group">
                       <label for="">Name of Unit</label>
                       <input type="text" name="nama_gpu" class="form-control" value="<?= $nama; ?>" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Merk of Unit</label>
+                      <input type="text" name="merk_gpu" class="form-control" value="<?= $merk; ?>" required>
                     </div>
                     <div class="form-group">
                       <label for="">TDP of GPU</label>

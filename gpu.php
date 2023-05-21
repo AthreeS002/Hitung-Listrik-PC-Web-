@@ -1,28 +1,12 @@
 <?php
-include("koneksi.php");
-
-$gpu = mysqli_query($koneksi, "SELECT COUNT(id_gpu) AS gpu FROM gpu");
-$gpu = mysqli_fetch_array($gpu);
-$gpu = $gpu['gpu'];
-
-$procie = mysqli_query($koneksi, "SELECT COUNT(id_procie) AS procie FROM procie");
-$procie = mysqli_fetch_array($procie);
-$procie = $procie['procie'];
-
-$mobo = mysqli_query($koneksi, "SELECT COUNT(id_mobo) AS mobo FROM mobo");
-$mobo = mysqli_fetch_array($mobo);
-$mobo = $mobo['mobo'];
-
-$cooler = mysqli_query($koneksi, "SELECT COUNT(id_cooler) AS cooler FROM cooler");
-$cooler = mysqli_fetch_array($cooler);
-$cooler = $cooler['cooler'];
+  include("../koneksi.php");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
@@ -54,19 +38,19 @@ $cooler = $cooler['cooler'];
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
-        <!-- <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" href="">
             Hai, <?= $nama; ?>
           </a>
-        </li> -->
+        </li>
       </ul>
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <li class="nav-item">
-          <a class="nav-link" href="login.php" onclick="return confirm('Apakah Anda Yakin Ingin Keluar?')">
-            Login &nbsp;
+          <a class="nav-link" href="../index.php" onclick="return confirm('Apakah Anda Yakin Ingin Keluar?')">
+            Logout &nbsp;
             <i class="fas fa-sign-out-alt"></i>
           </a>
         </li>
@@ -80,7 +64,7 @@ $cooler = $cooler['cooler'];
       <a href="#" class="brand-link">
         <i class="fas fa-hotel img-circle elevation-3 ml-3"></i>
         &nbsp;
-        <span class="brand-text font-weight-bold">Envy Hotel</span>
+        <span class="brand-text font-weight-bold">PC Builder</span>
       </a>
 
       <!-- Sidebar -->
@@ -92,8 +76,8 @@ $cooler = $cooler['cooler'];
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-              <li class="nav-item has-treeview menu-open">
-                <a href="index.php" class="nav-link active">
+              <li class="nav-item has-treeview">
+                <a href="index.php" class="nav-link">
                   <i class="nav-icon fas fa-home"></i>
                   <p>
                     Dashboard
@@ -102,7 +86,7 @@ $cooler = $cooler['cooler'];
               </li>
               <li class="nav-header">DATA MASTER</li>
               <li class="nav-item">
-                <a href="gpu.php" class="nav-link">
+                <a href="gpu.php" class="nav-link active">
                   <i class="nav-icon fas fa-person-booth"></i>
                   <p>
                     Graphic Card
@@ -134,10 +118,10 @@ $cooler = $cooler['cooler'];
                 </a>
               </li>
               <li class="nav-item">
-                <a href="manual.php" class="nav-link">
-                  <i class="nav-icon fas fa-user"></i>
+                <a href="monitor.php" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
                   <p>
-                    Manual
+                    Monitor
                   </p>
                 </a>
               </li>
@@ -165,7 +149,7 @@ $cooler = $cooler['cooler'];
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Data Components</h1>
+              <h1 class="m-0 text-dark">Data GPU</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
 
@@ -176,108 +160,58 @@ $cooler = $cooler['cooler'];
       <!-- /.content-header -->
 
       <!-- Main content -->
+
       <section class="content">
         <div class="container-fluid">
-          <!-- Info boxes -->
-          <div class="row">
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fa-solid fa-gamepad"></i></span>
-
-                <div class="info-box-content">
-                  <a href="gpu.php" class="text-dark">
-                    <span class="info-box-text">GPU</span>
-                    <span class="info-box-number">
-                      <?= $gpu; ?>
-                      <small>Unit</small>
-                    </span>
-                  </a>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-microchip"></i></span>
-
-                <div class="info-box-content">
-                  <a href="procie.php" class="text-dark">
-                    <span class="info-box-text">Processor</span>
-                    <span class="info-box-number">
-                      <?= $procie; ?>
-                      <small>Unit</small>
-                    </span>
-                  </a>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-
-            <!-- fix for small devices only -->
-            <div class="clearfix hidden-md-up"></div>
-
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="fa-solid fa-chess-board"></i></span>
-
-                <div class="info-box-content">
-                  <a href="mobo.php" class="text-dark">
-                    <span class="info-box-text">Motherboard</span>
-                    <span class="info-box-number">
-                      <?= $mobo; ?>
-                    </span>
-                  </a>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-snowflake"></i></span>
-
-                <div class="info-box-content">
-                  <a href="cooler.php" class="text-dark">
-                    <span class="info-box-text">Cooler</span>
-                    <span class="info-box-number">
-                      <?= $cooler; ?>
-                    </span>
-                  </a>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
 
           <div class="row">
             <div class="col-12">
-              <!-- BAR CHART -->
-              <div class="card card-info">
-                <div class="card-header">
-                  <h3 class="card-title">Grafik Transaksi Tahun 2020</h3>
-
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                  </div>
-                </div>
+              <div class="card">
                 <div class="card-body">
-                  <div class="chart">
-                    <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                  </div>
+                  <a class="btn btn-success mb-3" href="tambah/add_gpu.php">Add Data</a>
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr class="text-center">
+                        <th>Nama Unit</th>
+                        <th>TDP</th>
+                        <th>Memory</th>
+                        <th>Base Clock</th>
+                        <th>Boost Clock</th>
+                        <th>Action</th>
+                        <!-- <th>Harga</th>
+                        <th>Status</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+
+                      $gpu = mysqli_query($koneksi, "SELECT * FROM gpu ORDER BY id_gpu DESC");
+
+                      while ($row = mysqli_fetch_array($gpu)) {
+                        echo "
+                <tr>
+                  <td>" . $row['nama_gpu'] . "</td>
+                  <td>" . $row['tdp_gpu'] . " W</td>
+                  <td>" . $row['memory_gpu'] . " GB</td>
+                  <td>" . $row['baseclock_gpu'] . " MHz</td>
+                  <td>" . $row['boostclock_gpu'] . " MHz</td>
+                  <td class='text-center'>
+                            ";
+                                ?>
+                                  <a href="edit/info_gpu.php?id=<?= $row['id_gpu']; ?>"><i class=' btn btn-primary py-0 px-1 far fa-info'></i></a>
+                                <?php
+                                  echo "
+                            </td>
+                </tr>
+          ";
+                      }
+                      ?>
+                    </tbody>
+                    
+                  </table>
                 </div>
                 <!-- /.card-body -->
               </div>
-              <!-- /.card -->
             </div>
           </div>
 
@@ -300,8 +234,6 @@ $cooler = $cooler['cooler'];
     </footer>
 
   </div>
-
-  <!-- REQUIRED SCRIPTS -->
 
   <script src="https://kit.fontawesome.com/f8b26cae5f.js" crossorigin="anonymous"></script>
   <!-- jQuery -->
@@ -329,11 +261,10 @@ $cooler = $cooler['cooler'];
   <script src="admin/plugins/raphael/raphael.min.js"></script>
   <script src="admin/plugins/jquery-mapael/jquery.mapael.min.js"></script>
   <script src="admin/plugins/jquery-mapael/maps/usa_states.min.js"></script>
-  <!-- ChartJS -->
-  <script src="admin/plugins/chart.js/Chart.min.js"></script>
+
 
   <!-- PAGE SCRIPTS -->
-  <!-- <script src="../admin/dist/js/pages/dashboard2.js"></script> -->
+  <!-- <script src="../dist/js/pages/dashboard2.js"></script> -->
 
   <!-- page script -->
   <script>
@@ -341,6 +272,8 @@ $cooler = $cooler['cooler'];
       $("#example1").DataTable({
         "responsive": true,
         "autoWidth": false,
+        searching: true,
+        info: false,
       });
     });
   </script>
