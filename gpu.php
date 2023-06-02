@@ -1,5 +1,5 @@
 <?php
-  include("../koneksi.php");
+  include("koneksi.php");
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://kit.fontawesome.com/f8b26cae5f.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="admin/plugins/fontawesome-free/css/all.min.css">
+  <!-- <link rel="stylesheet" href="admin/plugins/fontawesome-free/css/all.min.css"> -->
 
   <!-- DataTables -->
   <link rel="stylesheet" href="admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -40,7 +40,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="">
-            Hai, <?= $nama; ?>
+            <!-- Hai, <?= $nama; ?> -->
           </a>
         </li>
       </ul>
