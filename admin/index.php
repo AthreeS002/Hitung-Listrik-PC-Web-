@@ -89,7 +89,7 @@ $cooler = $cooler['cooler'];
 
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="bi bi-motherboard"></i></span>
+              <span class="info-box-icon bg-success elevation-1"><i class="fa-solid fa-chess-board"></i></span>
 
                 <div class="info-box-content">
                   <a href="mobo.php" class="text-dark">
@@ -161,37 +161,8 @@ $cooler = $cooler['cooler'];
     </aside>
     <!-- /.control-sidebar -->
 
-    <!-- Main Footer -->
-    <footer class="main-footer text-sm text-center">
-      <strong>Copyright &copy; 2021 Pasha Bhimasty</strong>
-    </footer>
-
-  </div>
-
-
-  <!-- REQUIRED SCRIPTS -->
-  <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.js"></script>
-
-  <!-- OPTIONAL SCRIPTS -->
-  <script src="dist/js/demo.js"></script>
-
-  <!-- PAGE PLUGINS -->
-  <!-- jQuery Mapael -->
-  <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-  <script src="plugins/raphael/raphael.min.js"></script>
-  <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-  <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-  <!-- ChartJS -->
-  <script src="plugins/chart.js/Chart.min.js"></script>
-
-  <!-- BAR CHART -->
+    <?php include 'footer.php'; ?>
+    <!-- BAR CHART -->
   <script>
     $(function() {
 

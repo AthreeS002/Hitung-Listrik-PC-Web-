@@ -88,7 +88,7 @@ if (isset($_POST['update'])) {
                       <input type="text" name="nama_gpu" class="form-control" value="<?= $nama; ?>" required>
                     </div>
                     <div class="form-group">
-                      <label for="">Merk of Unit</label>
+                      <label for="">Brand of Unit</label>
                       <input type="text" name="merk_gpu" class="form-control" value="<?= $merk; ?>" required>
                     </div>
                     <div class="form-group">
