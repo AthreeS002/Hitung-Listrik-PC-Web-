@@ -26,6 +26,46 @@
   <link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+    .tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+      color: black;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+      color: green;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #ccc;
+      color: white;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+  </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -168,47 +208,97 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <a class="btn btn-success mb-3" href="tambah/add_gpu.php">Add Data</a>
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr class="text-center">
-                        <th>Nama Unit</th>
-                        <th>TDP</th>
-                        <th>Memory</th>
-                        <th>Base Clock</th>
-                        <th>Boost Clock</th>
-                        <th>Action</th>
-                        <!-- <th>Harga</th>
-                        <th>Status</th> -->
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
+                  <div class="tab">
+                    <button class="tablinks btn btn-primary active" onclick="openCity(event, 'NVIDIA')"  id="defaultOpen">NVIDIA</button>
+                    <button class="tablinks btn btn-primary" onclick="openCity(event, 'AMD')">AMD</button>
+                  </div>
 
-                      $gpu = mysqli_query($koneksi, "SELECT * FROM gpu ORDER BY id_gpu DESC");
+                  <div id="NVIDIA" class="tabcontent active">
+                    <!-- <a class="btn btn-success mb-3" href="tambah/add_gpu.php">Add Data</a> -->
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                        <tr class="text-center">
+                          <th>Nama Unit</th>
+                          <th>TDP</th>
+                          <th>Memory</th>
+                          <th>Base Clock</th>
+                          <th>Boost Clock</th>
+                          <th>Action</th>
+                          <!-- <th>Harga</th>
+                          <th>Status</th> -->
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
 
-                      while ($row = mysqli_fetch_array($gpu)) {
-                        echo "
-                <tr>
-                  <td>" . $row['nama_gpu'] . "</td>
-                  <td>" . $row['tdp_gpu'] . " W</td>
-                  <td>" . $row['memory_gpu'] . " GB</td>
-                  <td>" . $row['baseclock_gpu'] . " MHz</td>
-                  <td>" . $row['boostclock_gpu'] . " MHz</td>
-                  <td class='text-center'>
-                            ";
-                                ?>
-                                  <a href="edit/info_gpu.php?id=<?= $row['id_gpu']; ?>"><i class=' btn btn-primary py-0 px-1 far fa-info'></i></a>
-                                <?php
-                                  echo "
-                            </td>
-                </tr>
-          ";
-                      }
-                      ?>
-                    </tbody>
-                    
-                  </table>
+                        $gpu = mysqli_query($koneksi, "SELECT * FROM gpu WHERE merk_gpu = 'NVIDIA' ORDER BY id_gpu DESC");
+
+                        while ($row = mysqli_fetch_array($gpu)) {
+                          echo "
+                              <tr>
+                                <td>" . $row['nama_gpu'] . "</td>
+                                <td>" . $row['tdp_gpu'] . " W</td>
+                                <td>" . $row['memory_gpu'] . " GB</td>
+                                <td>" . $row['baseclock_gpu'] . " MHz</td>
+                                <td>" . $row['boostclock_gpu'] . " MHz</td>
+                                <td class='text-center'>
+                                          ";
+                                              ?>
+                                                <a href="edit/info_gpu.php?id=<?= $row['id_gpu']; ?>"><i class=' btn btn-primary py-0 px-1 far fa-info'></i></a>
+                                              <?php
+                                                echo "
+                                          </td>
+                              </tr>
+                        ";
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div id="AMD" class="tabcontent">
+                    <!-- <a class="btn btn-success mb-3" href="tambah/add_gpu.php">Add Data</a> -->
+                    <table id="example2" class="table table-bordered table-striped">
+                      <thead>
+                        <tr class="text-center">
+                          <th>Nama Unit</th>
+                          <th>TDP</th>
+                          <th>Memory</th>
+                          <th>Base Clock</th>
+                          <th>Boost Clock</th>
+                          <th>Action</th>
+                          <!-- <th>Harga</th>
+                          <th>Status</th> -->
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+
+                        $gpu = mysqli_query($koneksi, "SELECT * FROM gpu WHERE merk_gpu = 'AMD' ORDER BY id_gpu DESC");
+
+                        while ($row = mysqli_fetch_array($gpu)) {
+                          echo "
+                              <tr>
+                                <td>" . $row['nama_gpu'] . "</td>
+                                <td>" . $row['tdp_gpu'] . " W</td>
+                                <td>" . $row['memory_gpu'] . " GB</td>
+                                <td>" . $row['baseclock_gpu'] . " MHz</td>
+                                <td>" . $row['boostclock_gpu'] . " MHz</td>
+                                <td class='text-center'>
+                                          ";
+                                              ?>
+                                                <a href="edit/info_gpu.php?id=<?= $row['id_gpu']; ?>"><i class=' btn btn-primary py-0 px-1 far fa-info'></i></a>
+                                              <?php
+                                                echo "
+                                          </td>
+                              </tr>
+                        ";
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                  
                 </div>
                 <!-- /.card-body -->
               </div>
@@ -276,6 +366,25 @@
         info: false,
       });
     });
+
+    // Tab
+
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
   </script>
 
 </body>
