@@ -19,27 +19,6 @@ $cooler = mysqli_fetch_array($cooler);
 $cooler = $cooler['cooler'];
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-  <title>Envy</title>
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
-
-
 <?php include 'header.php'; ?>
   
 
@@ -70,7 +49,7 @@ $cooler = $cooler['cooler'];
           <div class="row">
           <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fa-solid fa-gamepad"></i></span>
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-gamepad"></i></span>
 
                 <div class="info-box-content">
                   <a href="gpu.php" class="text-dark">
@@ -110,7 +89,7 @@ $cooler = $cooler['cooler'];
 
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-bed"></i></span>
+                <span class="info-box-icon bg-success elevation-1"><i class="bi bi-motherboard"></i></span>
 
                 <div class="info-box-content">
                   <a href="mobo.php" class="text-dark">
@@ -127,7 +106,7 @@ $cooler = $cooler['cooler'];
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-snowflake"></i></span>
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-fan"></i></span>
 
                 <div class="info-box-content">
                   <a href="cooler.php" class="text-dark">
@@ -237,6 +216,7 @@ $cooler = $cooler['cooler'];
     });
   </script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 
 </html>

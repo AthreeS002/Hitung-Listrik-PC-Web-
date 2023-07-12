@@ -27,103 +27,7 @@ include("../../koneksi.php");
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-
-  <div class="wrapper">
-
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <!-- Left navbar links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">
-            Hai, <?= $nama; ?>
-          </a>
-        </li>
-      </ul>
-
-      <!-- Right navbar links -->
-      <ul class="navbar-nav ml-auto">
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item">
-          <a class="nav-link" href="logout.php" onclick="return confirm('Apakah Anda Yakin Ingin Keluar?')">
-            Logout
-            <i class="fas fa-sign-out-alt"></i>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <!-- /.navbar -->
-
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-light-primary elevation-4">
-      <!-- Brand Logo -->
-      <a href="#" class="brand-link">
-        <i class="fas fa-hotel img-circle elevation-3 ml-3"></i>
-        &nbsp;
-        <span class="brand-text font-weight-bold">PC Builder</span>
-      </a>
-
-      <!-- Sidebar -->
-      <div class="sidebar">
-
-        <!-- Sidebar Menu -->
-        <div class="mt-3">
-          <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-              <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-              <li class="nav-header">DATA MASTER</li>
-              <li class="nav-item">
-                <a href="gpu.php" class="nav-link active">
-                  <i class="nav-icon fas fa-person-booth"></i>
-                  <p>
-                    Graphic Card
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="procie.php" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>
-                    Prosesor
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="motherboard.php" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>
-                    Motherboard
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="ram.php" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>
-                    RAM
-                  </p>
-                </a>
-              </li>
-              <li class="nav-header">DATA ADMIN</li>
-              <li class="nav-item">
-                <a href="admin.php" class="nav-link">
-                  <i class="nav-icon fas fa-user-shield"></i>
-                  <p>
-                    Administrator
-                  </p>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
+<?php include 'header.php'; ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -141,24 +45,7 @@ include("../../koneksi.php");
                 <div class="card-header">
                   <h5 class="text-center m-0">Add Data GPU</h5>
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <?php
-                    // $id = $_GET['id'];
-                    // $result = mysqli_query($koneksi, "SELECT * FROM registrasi WHERE nin='$nin'");
-                    // while ($item = mysqli_fetch_array($result)){
-                    //   $username = $item['username'];
-                    //   $email = $item['email'];
-                    //   $nama = $item['nama'];
-                    //   $password = $item['password'];
-                    //   // $password2 = $item['password2'];
-                    //   $tanggallahir = $item['tanggallahir'];
-                    //   $gender = $item['gender'];
-                    //   $alamat = $item['alamat'];
-                    //   $telepon = $item['telepon'];
-                      // $foto = $item['foto'];
-                    
-                  ?>
+
                 <form action="" method="post" enctype="multipart/form-data">
                   <div class="card-body">
                   <!-- <h5 class="card-title">You can add data GPU</h5> -->
@@ -168,8 +55,28 @@ include("../../koneksi.php");
                       <input type="text" name="nama_gpu" class="form-control" required>
                     </div>
                     <div class="form-group">
-                      <label for="">TDP</label>
+                      <label for="">Brand of Unit</label>
+                      <input type="text" name="merk_gpu" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="">TDP of Unit</label>
                       <input type="number" name="tdp_gpu" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Memory Size of GPU</label>
+                      <input type="number" name="memory" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Base Clock</label>
+                      <input type="number" name="baseclock" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Boost Clock</label>
+                      <input type="number" name="boostclock" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Memory Clock</label>
+                      <input type="text" name="memoryclock" class="form-control" required>
                     </div>
 
                     <!-- /.card-body -->
@@ -181,11 +88,17 @@ include("../../koneksi.php");
                     </div>
                     <?php
                       if (isset($_POST['submit'])){
+                        $merk = $_POST['merk_gpu'];
                         $nama = $_POST['nama_gpu'];
                         $tdp = $_POST['tdp_gpu'];
+                        $memory = $_POST['memory'];
+                        $baseclock = $_POST['baseclock'];
+                        $boostclock = $_POST['boostclock'];
+                        $memoryclock = $_POST['memoryclock'];
+                        
                         include_once("../../koneksi.php");
                 
-                        $result = mysqli_query($koneksi, "INSERT INTO gpu(id_gpu, nama_gpu, tdp_gpu) VALUES (NULL, '$nama', '$tdp')");
+                        $result = mysqli_query($koneksi, "INSERT INTO gpu(id_gpu, merk_gpu, nama_gpu, tdp_gpu, memory_gpu, baseclock_gpu, boostclock_gpu, memoryclock_gpu) VALUES (NULL, '$merk','$nama', '$tdp', '$memory', '$baseclock', '$boostclock', '$memoryclock')");
                 
                         if($result){
                     ?>
