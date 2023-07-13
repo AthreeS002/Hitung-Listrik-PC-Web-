@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="dist/css/adminlte.min.css">
+<link rel="stylesheet" href="dist/css/tab.css">
 <!-- Google Font: Source Sans Pro -->
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -56,42 +57,121 @@
               <div class="card">
                 <div class="card-body">
                   <a class="btn btn-success mb-3" href="tambah/add_procie.php">Add Data</a>
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr class="text-center">
-                        <th>Nama Unit</th>
-                        <th>TDP</th>
-                        <th>Action</th>
-                        <!-- <th>Harga</th>
-                        <th>Status</th> -->
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
 
-                      $procie = mysqli_query($koneksi, "SELECT * FROM procie ORDER BY id_procie DESC");
+                  <div class="tab">
+                    <button class="tablinks btn btn-primary active" onclick="openCity(event, 'Intel')"  id="defaultOpen">Intel</button>
+                    <button class="tablinks btn btn-primary" onclick="openCity(event, 'AMD')">AMD</button>
+                  </div>
 
-                      while ($row = mysqli_fetch_array($procie)) {
-                        echo "
-                <tr>
-                  <td>" . $row['nama_procie'] . "</td>
-                  <td>" . $row['tdp_procie'] . " W</td>
-                  <td class='text-center'>
-                            ";
-                                ?>
-                                  <a href="edit/edit_procie.php?id=<?= $row['id_procie']; ?>" onclick="return confirm('Apakah Anda Yakin Ingin Mengubah Data?')"><i class=' btn btn-warning py-0 px-1 far fa-edit'></i></a>
-                                  <!-- &nbsp; -->
-                                  <a href="hapus/hapus_procie.php?id=<?= $row['id_procie']; ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data?')"><i class=' btn btn-danger py-0 px-1 far fa-trash-alt'></i></a>
-                                <?php
-                                  echo "
-                            </td>
-                </tr>
-          ";
-                      }
-                      ?>
-                    </tbody>
-                    
-                  </table>
+                  <div id="Intel" class="tabcontent active">
+                    <table id="example1" class="table table-bordered table-hover">
+                      <thead>
+                        <tr class="text-center">
+                          <th>Nama Unit</th>
+                          <th>Merk</th>
+                          <th>Type</th>
+                          <th>Total Cores</th>
+                          <th>Total Threads</th>
+                          <th>Baseclock</th>
+                          <th>Boost Clock</th>
+                          <th>Socket</th>
+                          <th>T Junction</th>
+                          <th>TDP</th>
+                          <th>Action</th>
+                          <!-- <th>Harga</th>
+                          <th>Status</th> -->
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+
+                        $procie = mysqli_query($koneksi, "SELECT * FROM procie WHERE merk_procie = 'Intel' ORDER BY id_procie DESC");
+
+                        while ($row = mysqli_fetch_array($procie)) {
+                          echo "
+                            <tr>
+                              <td>" . $row['nama_procie'] . "</td>
+                              <td>" . $row['merk_procie'] . "</td>
+                              <td>" . $row['penggunaan'] . "</td>
+                              <td>" . $row['cores']  . "</td>
+                              <td>" . $row['logical'] . "</td>
+                              <td>" . $row['baseclock_cpu'] . " GHz</td>
+                              <td>" . $row['boostclock_cpu'] . " GHz</td>
+                              <td>" . $row['socket'] . "</td>
+                              <td>" . $row['tjunction'] . "°C</td>
+                              <td>" . $row['tdp_procie'] . " W</td>
+                              <td class='text-center'>
+                                        ";
+                                            ?>
+                                              <a href="edit/edit_procie.php?id=<?= $row['id_procie']; ?>" onclick="return confirm('Apakah Anda Yakin Ingin Mengubah Data?')"><i class=' btn btn-warning py-0 px-1 far fa-edit'></i></a>
+                                              <!-- &nbsp; -->
+                                              <a href="hapus/hapus_procie.php?id=<?= $row['id_procie']; ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data?')"><i class=' btn btn-danger py-0 px-1 far fa-trash-alt'></i></a>
+                                            <?php
+                                              echo "
+                                        </td>
+                            </tr>
+                          ";
+                          }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                  
+                  <div id="AMD" class="tabcontent active">
+                    <table id="example1" class="table table-bordered table-hover">
+                      <thead>
+                        <tr class="text-center">
+                          <th>Nama Unit</th>
+                          <th>Merk</th>
+                          <th>Type</th>
+                          <th>Total Cores</th>
+                          <th>Total Threads</th>
+                          <th>Baseclock</th>
+                          <th>Boost Clock</th>
+                          <th>Socket</th>
+                          <th>T Junction</th>
+                          <th>TDP</th>
+                          <th>Action</th>
+                          <!-- <th>Harga</th>
+                          <th>Status</th> -->
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+
+                        $procie = mysqli_query($koneksi, "SELECT * FROM procie WHERE merk_procie = 'AMD' ORDER BY id_procie DESC");
+
+                        while ($row = mysqli_fetch_array($procie)) {
+                          echo "
+                            <tr>
+                              <td>" . $row['nama_procie'] . "</td>
+                              <td>" . $row['merk_procie'] . "</td>
+                              <td>" . $row['penggunaan'] . "</td>
+                              <td>" . $row['cores']  . "</td>
+                              <td>" . $row['logical'] . "</td>
+                              <td>" . $row['baseclock_cpu'] . " GHz</td>
+                              <td>" . $row['boostclock_cpu'] . " GHz</td>
+                              <td>" . $row['socket'] . "</td>
+                              <td>" . $row['tjunction'] . "°C</td>
+                              <td>" . $row['tdp_procie'] . " W</td>
+                              <td class='text-center'>
+                                        ";
+                                            ?>
+                                              <a href="edit/edit_procie.php?id=<?= $row['id_procie']; ?>" onclick="return confirm('Apakah Anda Yakin Ingin Mengubah Data?')"><i class=' btn btn-warning py-0 px-1 far fa-edit'></i></a>
+                                              <!-- &nbsp; -->
+                                              <a href="hapus/hapus_procie.php?id=<?= $row['id_procie']; ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data?')"><i class=' btn btn-danger py-0 px-1 far fa-trash-alt'></i></a>
+                                            <?php
+                                              echo "
+                                        </td>
+                            </tr>
+                          ";
+                          }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+
+
                 </div>
                 <!-- /.card-body -->
               </div>
@@ -111,44 +191,8 @@
     </aside>
     <!-- /.control-sidebar -->
 
-    <!-- Main Footer -->
-    <footer class="main-footer text-sm text-center">
-      <strong>Copyright &copy; 2022 Envy Hotel</strong>
-    </footer>
-
-  </div>
-
-  <!-- REQUIRED SCRIPTS -->
-  <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- DataTables -->
-  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-
-  <!-- overlayScrollbars -->
-  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.js"></script>
-
-  <!-- OPTIONAL SCRIPTS -->
-  <script src="dist/js/demo.js"></script>
-
-  <!-- PAGE PLUGINS -->
-  <!-- jQuery Mapael -->
-  <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-  <script src="plugins/raphael/raphael.min.js"></script>
-  <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-  <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-  <!-- ChartJS -->
-  <script src="plugins/chart.js/Chart.min.js"></script>
-
-  <!-- PAGE SCRIPTS -->
-  <!-- <script src="../dist/js/pages/dashboard2.js"></script> -->
+    <!-- FOOTER -->
+    <?php include 'footer.php'; ?>
 
   <!-- page script -->
   <script>
@@ -158,6 +202,24 @@
         "autoWidth": false,
       });
     });
+
+
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
   </script>
 
 </body>

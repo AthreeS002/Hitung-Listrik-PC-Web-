@@ -8,13 +8,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Envy</title>
+  <title>PC Builder</title>
 
   <!-- Bootstrap -->
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://kit.fontawesome.com/f8b26cae5f.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css"> -->
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
@@ -56,7 +56,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-light-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="#" class="brand-link">
+      <a href="index.php" class="brand-link">
         <i class="fa-solid fa-computer ml-3"></i>
         &nbsp;
         <span class="brand-text font-weight-bold">Envy</span>
@@ -84,7 +84,7 @@
               
                 <li class="nav-item">
                     <a href="gpu.php" class="nav-link <?php echo ($activePage == 'gpu.php') ? 'active' : ''; ?>">
-                        <i class="nav-icon fas fa-person-booth"></i>
+                        <i class="nav-icon fas fa-gamepad"></i>
                         <p>
                             Graphic Card
                         </p>
@@ -93,7 +93,7 @@
 
                 <li class="nav-item">
                     <a href="procie.php" class="nav-link <?php echo ($activePage == 'procie.php') ? 'active' : ''; ?>">
-                    <i class="nav-icon fas fa-users"></i>
+                    <i class="nav-icon fas fa-microchip"></i>
                     <p>
                         Prosesor
                     </p>
@@ -102,7 +102,7 @@
 
               <li class="nav-item">
                 <a href="motherboard.php" class="nav-link <?php echo ($activePage == 'motherboard.php') ? 'active' : ''; ?>">
-                  <i class="nav-icon fas fa-users"></i>
+                  <i class="nav-icon fa-solid fa-chess-board"></i>
                   <p>
                     Motherboard
                   </p>
@@ -110,7 +110,7 @@
               </li>
               <li class="nav-item">
                 <a href="ram.php" class="nav-link <?php echo ($activePage == 'ram.php') ? 'active' : ''; ?>">
-                  <i class="nav-icon fas fa-users"></i>
+                  <i class="nav-icon fa-solid fa-memory"></i>
                   <p>
                     RAM
                   </p>
@@ -118,7 +118,7 @@
               </li>
               <li class="nav-item">
                 <a href="monitor.php" class="nav-link <?php echo ($activePage == 'monitor.php') ? 'active' : ''; ?>">
-                  <i class="nav-icon fas fa-users"></i>
+                  <i class="nav-icon fa-solid fa-tv"></i>
                   <p>
                     Monitor
                   </p>

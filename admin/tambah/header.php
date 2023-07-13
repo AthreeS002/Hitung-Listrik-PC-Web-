@@ -83,7 +83,7 @@
               
                 <li class="nav-item">
                     <a href="../gpu.php" class="nav-link <?php echo ($activePage == 'add_gpu.php') ? 'active' : ''; ?>">
-                        <i class="nav-icon fas fa-person-booth"></i>
+                      <i class="nav-icon fas fa-gamepad"></i>
                         <p>
                             Graphic Card
                         </p>
@@ -92,7 +92,7 @@
 
                 <li class="nav-item">
                     <a href="../procie.php" class="nav-link <?php echo ($activePage == 'add_procie.php') ? 'active' : ''; ?>">
-                    <i class="nav-icon fas fa-users"></i>
+                    <i class="nav-icon fas fa-microchip"></i>
                     <p>
                         Prosesor
                     </p>
@@ -101,7 +101,7 @@
 
               <li class="nav-item">
                 <a href="../motherboard.php" class="nav-link <?php echo ($activePage == 'add_motherboard.php') ? 'active' : ''; ?>">
-                  <i class="nav-icon fas fa-users"></i>
+                <i class="nav-icon fa-solid fa-chess-board"></i>
                   <p>
                     Motherboard
                   </p>
@@ -109,7 +109,7 @@
               </li>
               <li class="nav-item">
                 <a href="../ram.php" class="nav-link <?php echo ($activePage == 'add_ram.php') ? 'active' : ''; ?>">
-                  <i class="nav-icon fas fa-users"></i>
+                <i class="nav-icon fa-solid fa-memory"></i>
                   <p>
                     RAM
                   </p>
@@ -117,7 +117,7 @@
               </li>
               <li class="nav-item">
                 <a href="../monitor.php" class="nav-link <?php echo ($activePage == 'add_monitor.php') ? 'active' : ''; ?>">
-                  <i class="nav-icon fas fa-users"></i>
+                <i class="nav-icon fa-solid fa-tv"></i>
                   <p>
                     Monitor
                   </p>

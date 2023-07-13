@@ -56,6 +56,52 @@ include("../../koneksi.php");
                       <label for="">Name</label>
                       <input type="text" name="nama_procie" class="form-control" required>
                     </div>
+                    <div class="form" method="post" action="">
+                      <label for="">Select Brand Name</label>
+                        <select required class="form-control select2" name="merk_procie">
+                          <option value="">-- Choose the Brand --</option>
+                          <option value="AMD">AMD</option>
+                          <option value="Intel">Intel</option>
+                        </select>
+                    </div>
+
+                    <div class="form" method="post" action="">
+                      <label for="">Select Type</label>
+                        <select required class="form-control select2" name="type_procie">
+                          <option value="">-- Choose the Type --</option>
+                          <option value="Desktop">Desktop</option>
+                          <option value="Laptop">Laptop</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Cores</label>
+                      <input type="number" name="cores" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Logical</label>
+                      <input type="number" name="logical" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Base Clock of Processor</label>
+                      <input type="number" step="0.01" name="baseclock" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Boost Clock of Processor</label>
+                      <input type="number" step="0.01" name="boostclock" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Socket of Processor</label>
+                      <input type="text" name="socket" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">TJunction</label>
+                      <input type="number" name="tjunction" class="form-control" required>
+                    </div>
                     <div class="form-group">
                       <label for="">TDP</label>
                       <input type="number" name="tdp_procie" class="form-control" required>
@@ -64,17 +110,25 @@ include("../../koneksi.php");
                     <!-- /.card-body -->
 
                     <div class="my-5 text-center">
-                      <a href="../gpu.php" name="batal" class="btn btn-danger">Cancel</a>
+                      <a href="../procie.php" name="batal" class="btn btn-danger">Cancel</a>
                       &nbsp;
                       <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                     </div>
                     <?php
                       if (isset($_POST['submit'])){
                         $nama = $_POST['nama_procie'];
+                        $merk = $_POST['merk_procie'];
+                        $type = $_POST['type_procie'];
+                        $cores = $_POST['cores'];
+                        $logical = $_POST['logical'];
+                        $baseclock = $_POST['baseclock'];
+                        $boostclock = $_POST['boostclock'];
+                        $socket = $_POST['socket'];
+                        $tjunction = $_POST['tjunction'];
                         $tdp = $_POST['tdp_procie'];
                         include_once("../../koneksi.php");
                 
-                        $result = mysqli_query($koneksi, "INSERT INTO procie (id_procie, nama_procie, tdp_procie) VALUES (NULL, '$nama', '$tdp')");
+                        $result = mysqli_query($koneksi, "INSERT INTO procie (id_procie, nama_procie, merk_procie, penggunaan, cores, logical, baseclock_cpu, boostclock_cpu, socket, tjunction, tdp_procie) VALUES (NULL, '$nama', '$merk', '$type', $cores, $logical, $baseclock, $boostclock, '$socket', $tjunction, $tdp)");
                 
                         if($result){
                     ?>
@@ -107,35 +161,8 @@ include("../../koneksi.php");
     </aside>
     <!-- /.control-sidebar -->
 
-    <!-- Main Footer -->
-    <footer class="main-footer text-sm text-center">
-      <strong>Copyright &copy; 2023 Noxious</strong>
-    </footer>
-
-  </div>
-
-  <!-- REQUIRED SCRIPTS -->
-  <!-- jQuery -->
-  <script src="../plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- overlayScrollbars -->
-  <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="../dist/js/adminlte.js"></script>
-
-  <!-- OPTIONAL SCRIPTS -->
-  <script src="../dist/js/demo.js"></script>
-
-  <!-- PAGE ../PLUGINS -->
-  <!-- jQuery Mapael -->
-  <script src="../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-  <script src="../plugins/raphael/raphael.min.js"></script>
-  <script src="../plugins/jquery-mapael/jquery.mapael.min.js"></script>
-  <script src="../plugins/jquery-mapael/maps/usa_states.min.js"></script>
-  <!-- ChartJS -->
-  <script src="../plugins/chart.js/Chart.min.js"></script>
+    <!-- FOOTER -->
+    <?php include '../edit/footer.php'; ?>
 
   <!-- PAGE SCRIPTS -->
   <!-- <script src="../../dist/js/pages/dashboard2.js"></script> -->
